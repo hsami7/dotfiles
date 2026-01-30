@@ -4,6 +4,12 @@ vim.g.maplocalleader = ' '
 
 local keymap = vim.keymap
 
+-- use jk to exit insert mode
+keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
+
+-- clear search highlights
+keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
+
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true, desc = 'Disable spacebar default behavior' })
 
@@ -81,3 +87,16 @@ end, { desc = 'Go to next diagnostic message' })
 
 keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = 'Find all references' })
 keymap.set('n', '<leader>ld', vim.lsp.buf.definition, { desc = 'List definitions (location list)' })
+
+-- LSP Actions (Smart Fixes and Renaming)
+keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'See available code actions' })
+keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Smart rename' })
+
+-- Moving Lines (Alt + j/k)
+-- Normal Mode
+keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+
+-- Visual Mode
+keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
