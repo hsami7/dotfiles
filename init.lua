@@ -1,8 +1,13 @@
-require 'core.options' -- Load general options
-require 'core.keymaps' -- Load general keymaps
-require 'core.snippets' -- Custom code snippets
+-- ~/.config/nvim/init.lua
 
--- Set up the Lazy plugin manager
+-- 1. Load Core Settings First
+-- It is critical to load options and keymaps BEFORE plugins
+-- so that your leader key (' ') is ready when plugins try to use it.
+require 'core.options' -- Sets up your numbers, tabs, etc.
+require 'core.keymaps' -- Sets up your leader and basic shortcuts
+require 'core.snippets' -- Sets up your diagnostics and appearance
+
+-- 2. Bootstrap Lazy.nvim (Plugin Manager)
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -13,30 +18,37 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Set up plugins
+-- 3. Setup Plugins via Lazy
+-- We use 'spec' with 'import' so you don't have to manually list every file.
+-- This will automatically load everything in your lua/plugins/ directory.
 require('lazy').setup {
-  require 'plugins.nvim-tree',
-  require 'plugins.colortheme',
-  require 'plugins.bufferline',
-  require 'plugins.lualine',
-  require 'plugins.treesitter',
-  require 'plugins.autotag',
-  require 'plugins.surround',
-  require 'plugins.telescope',
-  require 'plugins.todo-comments',
-  require 'plugins.trouble',
-  require 'plugins.lsp',
-  require 'plugins.autocompletion',
-  require 'plugins.auto-session',
-  require 'plugins.lint',
-  require 'plugins.formatter',
-  require 'plugins.gitsigns',
-  require 'plugins.alpha',
-  require 'plugins.indent-blankline',
-  require 'plugins.misc',
-  require 'plugins.comment',
-  require 'plugins.lazygit',
+  spec = {
+    { import = 'plugins' },
+  },
+  -- Configure Lazy UI appearance
+  ui = {
+    border = 'rounded',
+    icons = {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
+  -- Automatically check for plugin updates
+  checker = { enabled = true, notify = false },
+  -- This will use the colorscheme you set in plugins/colortheme.lua for the lazy UI
+  install = { colorscheme = { 'tokyonight' } },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et- vim: ts=2 sts=2 sw=2 et
