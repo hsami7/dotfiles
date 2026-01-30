@@ -6,11 +6,11 @@ return {
   },
   cmd = 'Trouble',
   keys = {
-    { '<leader>da', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Open trouble workspace diagnostics' },
-    { '<leader>dl', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Open trouble document diagnostics' },
-    { '<leader>dq', '<cmd>Trouble quickfix toggle<CR>', desc = 'Open trouble quickfix list' },
-    { '<leader>dc', '<cmd>Trouble loclist toggle<CR>', desc = 'Open trouble location list' },
-    { '<leader>td', '<cmd>Trouble todo toggle<CR>', desc = 'Open todos in trouble' },
+    -- Use these to see errors in your C/PHP projects
+    { '<leader>dx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Project Diagnostics (Trouble)' },
+    { '<leader>db', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Buffer Diagnostics (Trouble)' },
+    { '<leader>dq', '<cmd>Trouble quickfix toggle<CR>', desc = 'Quickfix List (Trouble)' },
+    { '<leader>dl', '<cmd>Trouble loclist toggle<CR>', desc = 'Location List (Trouble)' },
+    { '<leader>dt', '<cmd>Trouble todo toggle<CR>', desc = 'Open Todos in Trouble' },
   },
 }
-

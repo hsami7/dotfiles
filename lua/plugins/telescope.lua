@@ -1,28 +1,32 @@
 return {
   'nvim-telescope/telescope.nvim',
-  branch = 'master', -- Keep as master to fix ft_to_lang error
+  branch = 'master',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'nvim-tree/nvim-web-devicons',
     'folke/todo-comments.nvim',
-    'nvim-treesitter/nvim-treesitter', -- Explicitly add treesitter dependency for Telescope
+    'nvim-treesitter/nvim-treesitter',
   },
   config = function()
     local telescope = require 'telescope'
     local actions = require 'telescope.actions'
-    local builtin = require 'telescope.builtin' -- For help_tags, keymaps, diagnostics
+    local builtin = require 'telescope.builtin'
+
+    -- Check if trouble is installed before requiring it
+    local has_trouble, trouble_telescope = pcall(require, 'trouble.sources.telescope')
 
     telescope.setup {
       defaults = {
         path_display = { 'smart' },
-        hidden = true, -- Re-add hidden = true
+        hidden = true,
         mappings = {
           i = {
-            ['<C-k>'] = actions.move_selection_previous, -- move to prev result
-            ['<C-j>'] = actions.move_selection_next, -- move to next result
+            ['<C-k>'] = actions.move_selection_previous,
+            ['<C-j>'] = actions.move_selection_next,
             ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-            ['<C-t>'] = actions.send_to_qflist,
+            -- Push Telescope results to the Trouble panel for easier navigation
+            ['<C-t>'] = has_trouble and trouble_telescope.open or nil,
           },
         },
       },
@@ -30,18 +34,21 @@ return {
 
     telescope.load_extension 'fzf'
 
-    -- set keymaps
-    local keymap = vim.keymap -- for conciseness
+    local keymap = vim.keymap
 
-    keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Fuzzy find files in cwd' })
-    keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Fuzzy find recent files' })
-    keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<cr>', { desc = 'Find string in cwd' })
-    keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = 'Find string under cursor in cwd' })
-    keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = 'Find todos' })
-    -- Previously established keymaps:
-    keymap.set('n', '<leader>hh', builtin.help_tags, { desc = '[H]elp [H]eaders' }) -- from previous
-    keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Search keymaps' }) -- from previous
-    keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Find diagnostics' }) -- from previous
-    keymap.set('n', '<leader>gs', builtin.lsp_document_symbols, { desc = 'Go to Symbol (Function/Variable)' })
+    -- Standard Search
+    keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
+    keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Find Text (Grep)' })
+    keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Recent Files' })
+    keymap.set('n', '<leader>fc', builtin.grep_string, { desc = 'Find Word under Cursor' })
+
+    -- Buffer & Code Structure (The ones you requested)
+    keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Search Open Buffers' })
+    keymap.set('n', '<leader>gs', builtin.lsp_document_symbols, { desc = 'Find Symbols (Functions/Vars)' })
+
+    -- LSP & Diagnostics
+    keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Search Diagnostics' })
+    keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Search Keymaps' })
+    keymap.set('n', '<leader>hh', builtin.help_tags, { desc = 'Search Help' })
   end,
 }
