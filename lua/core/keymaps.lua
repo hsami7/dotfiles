@@ -100,3 +100,9 @@ keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
 -- Visual Mode
 keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
 keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+
+-- Multi-cursor VS Code style
+-- Add cursor above
+keymap.set('n', '<C-A-k>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add cursor up' })
+-- Add cursor below
+keymap.set('n', '<C-A-j>', '<Plug>(VM-Add-Cursor-Down)', { desc = 'Add cursor down' })
