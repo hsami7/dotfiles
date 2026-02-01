@@ -52,7 +52,7 @@ return {
       },
       filters = {
         dotfiles = false,
-        custom = { '.DS_Store' },
+        custom = { '.DS_Store', '.php-cs-fixer.dist.php', '.php-cs-fixer.cache' },
       },
       git = {
         enable = true,
