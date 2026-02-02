@@ -7,6 +7,7 @@ return {
       python = { 'ruff' },
       bash = { 'shellcheck' },
       make = { 'checkmake' },
+      php = { 'phpstan' },
     }
 
     local augroup = vim.api.nvim_create_augroup('lint', { clear = true })
