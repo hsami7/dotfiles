@@ -1,0 +1,43 @@
+[general]
+import = ["~/.config/alacritty/themes/themes/coolnight.toml"
+]
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+size = 11.0
+
+[window]
+opacity = 0.8
+blur = true
+
+# This is the key fix for X11 resizing lag
+resize_increments = true
+
+# Optional: helps syncing
+dynamic_padding = true
+
+[colors.primary]
+background = '#0f111a'
+foreground = '#ffffff'
+
+[colors.normal]
+black = '#000000'
+red = '#ff5c57'
+green = '#5af78e'
+yellow = '#f3f99d'
+blue = '#57c7ff'
+magenta = '#ff6ac1'
+cyan = '#9aedfe'
+white = '#f1f1f0'
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
