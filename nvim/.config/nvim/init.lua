@@ -47,7 +47,7 @@ require('lazy').setup {
   -- Automatically check for plugin updates
   checker = { enabled = true, notify = false },
   -- This will use the colorscheme you set in plugins/colortheme.lua for the lazy UI
-  install = { colorscheme = { 'tokyonight' } },
+  -- install = { colorscheme = { 'tokyonight' } },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

@@ -7,6 +7,7 @@ return {
     'nvim-tree/nvim-web-devicons',
     'folke/todo-comments.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'nvim-telescope/telescope-file-browser.nvim',
   },
   config = function()
     local telescope = require 'telescope'
@@ -33,11 +34,13 @@ return {
     }
 
     telescope.load_extension 'fzf'
+    telescope.load_extension 'file_browser'
 
     local keymap = vim.keymap
 
     -- Standard Search
     keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
+    keymap.set('n', '<leader>fl', require('telescope').extensions.file_browser.file_browser, { desc = 'Find Folders' })
     keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Find Text (Grep)' })
     keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Recent Files' })
     keymap.set('n', '<leader>fc', builtin.grep_string, { desc = 'Find Word under Cursor' })

@@ -1,6 +1,7 @@
 -- Set leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.o.winborder = 'rounded'
 
 local keymap = vim.keymap
 
@@ -21,7 +22,6 @@ keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file', noremap = true, s
 
 -- save file without auto-formatting
 keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', { desc = 'Save file without auto-formatting', noremap = true, silent = true })
---TODO: wq
 -- quit file
 keymap.set('n', '<C-q>', '<cmd> q <CR>', { desc = 'Quit current window', noremap = true, silent = true })
 
