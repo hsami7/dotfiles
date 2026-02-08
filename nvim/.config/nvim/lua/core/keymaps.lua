@@ -94,12 +94,22 @@ keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Smart rename' })
 
 -- Moving Lines (Alt + j/k)
 -- Normal Mode
-keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
-keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+keymap.set('n', '<C-A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+keymap.set('n', '<C-A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+keymap.set('n', '<C-A-h>', '<', { desc = 'Move line left' })
+keymap.set('n', '<C-A-l>', '>', { desc = 'Move line right' })
 
 -- Visual Mode
-keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
-keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+keymap.set('v', '<C-A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+keymap.set('v', '<C-A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+keymap.set('v', '<C-A-h>', '<gv', { desc = 'Move selection left' })
+keymap.set('v', '<C-A-l>', '>gv', { desc = 'Move selection right' })
+
+-- Moving up/down in Insert mode using Alt + j/k
+keymap.set('i', '<A-j>', '<Down>', { desc = 'Move down in Insert mode' })
+keymap.set('i', '<A-k>', '<Up>', { desc = 'Move up in Insert mode' })
+keymap.set('i', '<A-h>', '<Left>', { desc = 'Move left in Insert mode' })
+keymap.set('i', '<A-l>', '<Right>', { desc = 'Move right in Insert mode' })
 
 -- Multi-cursor VS Code style
 -- Add cursor above
