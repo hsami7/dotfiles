@@ -92,6 +92,9 @@ keymap.set('n', '<leader>ld', vim.lsp.buf.definition, { desc = 'List definitions
 keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'See available code actions' })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Smart rename' })
 
+-- Reload conform.nvim formatter
+keymap.set('n', '<leader>rf', '<cmd>Lazy reload conform.nvim<CR>', { desc = 'Reload conform.nvim (formatter)' })
+
 -- Moving Lines (Alt + j/k)
 -- Normal Mode
 keymap.set('n', '<C-A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
