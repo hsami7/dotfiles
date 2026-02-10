@@ -5,7 +5,7 @@
 -- so that your leader key (' ') is ready when plugins try to use it.
 require 'core.options' -- Sets up your numbers, tabs, etc.
 require 'core.keymaps' -- Sets up your leader and basic shortcuts
-require 'core.snippets' -- Sets up your diagnostics and appearance
+require 'core.diagnostics' -- Sets up your diagnostics and appearance
 
 -- 2. Bootstrap Lazy.nvim (Plugin Manager)
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
