@@ -119,3 +119,6 @@ keymap.set('i', '<A-l>', '<Right>', { desc = 'Move right in Insert mode' })
 keymap.set('n', '<C-A-k>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add cursor up' })
 -- Add cursor below
 keymap.set('n', '<C-A-j>', '<Plug>(VM-Add-Cursor-Down)', { desc = 'Add cursor down' })
+
+-- Search notification history
+vim.keymap.set('n', '<leader>sn', ':Telescope notify<CR>', { desc = 'Search Notifications' })
