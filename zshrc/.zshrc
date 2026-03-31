@@ -17,10 +17,12 @@ export XDG_CURRENT_DESKTOP=GNOME
 export PATH="$HOME/.local/bin:$PATH"
 
 # Homebrew Setup
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export HOMEBREW_CURL_PATH="/home/linuxbrew/.linuxbrew/bin/curl"
-export HOMEBREW_GIT_PATH="/home/linuxbrew/.linuxbrew/bin/git"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export HOMEBREW_CURL_PATH="/home/linuxbrew/.linuxbrew/bin/curl"
+  export HOMEBREW_GIT_PATH="/home/linuxbrew/.linuxbrew/bin/git"
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+fi
 
 # ===============================================================
 # 3. HISTORY CONFIGURATION
@@ -34,7 +36,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_space    
 
 # ===============================================================
-# 4. ALIASES & TOOLS INITIALIZATION
+# ALIASES & TOOLS INITIALIZATION
 # ===============================================================
 # Tool Init
 eval "$(zoxide init zsh)"
@@ -45,6 +47,7 @@ alias cd="z"
 alias ls='eza --icons --group-directories-first'
 alias cl='clear'
 alias o='xdg-open . > /dev/null 2>&1'
+alias bat=batcat
 
 # Git Aliases
 alias gaa='git add .'
@@ -73,19 +76,20 @@ check_disks() {
 # ===============================================================
 # 6. FZF CONFIGURATION (Tokyo Night Style)
 # ===============================================================
-eval "$(fzf --zsh)"
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 source ~/.fzf-git/fzf-git.sh
 
 # Tokyo Night Color Scheme
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --color=bg+:#283457,bg:#1a1b26,spinner:#bb9af7,hl:#7ad5f3 --color=fg:#c0caf5,header:#7ad5f3,info:#7dcfff,pointer:#bb9af7 --color=marker:#9ece6a,fg+:#c0caf5,prompt:#bb9af7,hl+:#7ad5f3"
 
 # FD Commands (Include hidden files, ignore .git)
-export FZF_DEFAULT_COMMAND="fd --hidden --no-ignore --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fdfind --hidden --no-ignore --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --no-ignore --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fdfind --type=d --hidden --no-ignore --strip-cwd-prefix --exclude .git"
 
 # FZF Previews
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # FZF Completion Functions
@@ -105,11 +109,27 @@ _fzf_comprun() {
     cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+    *)            fzf --preview "batcat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
 # ===============================================================
 # 7. PLUGINS (Must be at the very bottom)
 # ===============================================================
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ngl/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ngl/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ngl/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ngl/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
