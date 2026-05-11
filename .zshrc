@@ -131,5 +131,7 @@ else
     fi
 fi
 unset __conda_setup
+export FONTCONFIG_PATH="/home/ngl/opt/anaconda3/etc/fonts"
+export FONTCONFIG_FILE="/home/ngl/opt/anaconda3/etc/fonts/fonts.conf"
 # <<< conda initialize <<<
 
