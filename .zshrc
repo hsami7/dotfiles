@@ -8,7 +8,7 @@ fi
 # ===============================================================
 # 2. SHELL THEME & ENVIRONMENT
 # ===============================================================
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export TERM="xterm-256color"
@@ -78,7 +78,7 @@ check_disks() {
 # ===============================================================
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
-source ~/.fzf-git/fzf-git.sh
+source ~/.local/share/fzf-git/fzf-git.sh
 
 # Tokyo Night Color Scheme
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --color=bg+:#283457,bg:#1a1b26,spinner:#bb9af7,hl:#7ad5f3 --color=fg:#c0caf5,header:#7ad5f3,info:#7dcfff,pointer:#bb9af7 --color=marker:#9ece6a,fg+:#c0caf5,prompt:#bb9af7,hl+:#7ad5f3"
@@ -120,14 +120,14 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ngl/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/ngl/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/ngl/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ngl/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/ngl/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ngl/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/ngl/anaconda3/bin:$PATH"
+        export PATH="/home/ngl/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

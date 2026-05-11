@@ -1,5 +1,49 @@
-yay -Syu #full update
-yay -S --needed fzf thefuck zoxide eza bat ripgrep fd tmux stow neovim lazygit nodejs npm kitty waybar hyprland rofi wofi powerlevel10k starship zsh-autosuggestions zsh-syntax-highlighting
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone https://github.com/junegunn/fzf-git.sh.git ~/.fzf-git
-yay -S ttf-cascadia-code-nerd
+#!/usr/bin/env bash
+
+# --- 1. Bootstrap yay (AUR Helper) ---
+if ! command -v yay &> /dev/null; then
+    echo "yay not found. Installing..."
+    sudo pacman -S --needed --noconfirm base-devel git
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    pushd /tmp/yay
+    makepkg -si --noconfirm
+    popd
+fi
+
+# --- 2. System Update ---
+yay -Syu --noconfirm
+
+# --- 3. Install Core CLI Tools ---
+yay -S --needed --noconfirm \
+    fzf thefuck zoxide eza bat ripgrep fd \
+    tmux stow neovim lazygit nodejs npm \
+    starship yazi smartmontools
+
+# --- 4. Install GUI Apps & Environment ---
+yay -S --needed --noconfirm \
+    kitty waybar hyprland rofi wofi \
+    obsidian 1password localsend vlc \
+    ttf-cascadia-code-nerd
+
+# --- 5. Zsh Plugins & Theme ---
+yay -S --needed --noconfirm \
+    zsh-theme-powerlevel10k \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting
+
+# --- 6. Manual Plugin Setup (Non-Pacman) ---
+mkdir -p ~/.local/share
+mkdir -p ~/.tmux/plugins
+
+# TPM (Tmux Plugin Manager)
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+# fzf-git.sh
+if [ ! -d ~/.local/share/fzf-git ]; then
+    git clone https://github.com/junegunn/fzf-git.sh.git ~/.local/share/fzf-git
+fi
+
+echo "Installation complete! Remember to link your dotfiles using stow or symlinks."
+
