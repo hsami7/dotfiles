@@ -44,7 +44,7 @@ eval $(thefuck --alias)
 
 # Navigation & Files
 alias cd="z"
-alias ls='eza --icons --group-directories-first'
+alias ls='eza -lh --group-directories-first --icons=auto'
 alias cl='clear'
 alias o='xdg-open . > /dev/null 2>&1'
 alias bat=batcat
