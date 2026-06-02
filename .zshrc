@@ -135,3 +135,10 @@ export FONTCONFIG_PATH="/home/ngl/opt/anaconda3/etc/fonts"
 export FONTCONFIG_FILE="/home/ngl/opt/anaconda3/etc/fonts/fonts.conf"
 # <<< conda initialize <<<
 
+
+. "$HOME/.local/share/../bin/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/ngl/.local/bin:$PATH"
+export PATH=$PATH:$HOME/opt/go/bin:$HOME/go/bin
