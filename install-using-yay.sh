@@ -17,13 +17,21 @@ yay -Syu --noconfirm
 yay -S --needed --noconfirm \
     fzf thefuck zoxide eza bat ripgrep fd \
     tmux stow neovim lazygit nodejs npm \
-    starship yazi smartmontools
+    starship yazi smartmontools \
+    bluetui brightnessctl btop claude-code cliamp \
+    dust dysk fastfetch github-cli glow htop \
+    lazydocker mise ngrok tailscale timeshift \
+    ufw ufw-docker wl-clipboard zram-generator
 
 # --- 4. Install GUI Apps & Environment ---
 yay -S --needed --noconfirm \
     kitty waybar hyprland rofi wofi \
-    obsidian 1password localsend vlc \
-    ttf-cascadia-code-nerd
+    obsidian 1password-beta 1password-cli localsend vlc \
+    alacritty brave-bin chromium code helium-browser-bin \
+    imv keyd mission-center mpv nautilus obs-studio \
+    opencode remmina satty signal-desktop spotify swaybg \
+    swayosd walker ttf-cascadia-code-nerd ttf-ia-writer \
+    ttf-jetbrains-mono-nerd aether
 
 # --- 5. Zsh Plugins & Theme ---
 yay -S --needed --noconfirm \

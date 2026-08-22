@@ -47,7 +47,7 @@ alias cd="z"
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias cl='clear'
 alias o='xdg-open . > /dev/null 2>&1'
-alias bat=batcat
+alias bat=bat
 
 # Git Aliases
 alias gaa='git add .'
@@ -89,7 +89,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind --type=d --hidden --no-ignore --strip-cwd-prefix --exclude .git"
 
 # FZF Previews
-export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always --line-range :500 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # FZF Completion Functions
@@ -109,7 +109,7 @@ _fzf_comprun() {
     cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "batcat -n --color=always --line-range :500 {}" "$@" ;;
+    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
 # ===============================================================
@@ -142,3 +142,5 @@ export FONTCONFIG_FILE="/home/ngl/opt/anaconda3/etc/fonts/fonts.conf"
 # Added by Antigravity CLI installer
 export PATH="/home/ngl/.local/bin:$PATH"
 export PATH=$PATH:$HOME/opt/go/bin:$HOME/go/bin
+export PATH="$HOME/flutter/bin:$PATH"
+export PATH="$HOME/flutter/bin:$PATH"

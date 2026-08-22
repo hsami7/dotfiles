@@ -11,7 +11,7 @@ set -euo pipefail
 # Output directory and filename
 BACKUP_DIR_NAME="omarchy_backup_$(date +%F)"
 BACKUP_PATH="$HOME/$BACKUP_DIR_NAME"
-TARBALL="$HOME/${BACKUP_DIR_NAME}.tar.gz"
+ZIP_FILE="/home/ngl/dotfiles/omarchy_backup.zip"
 
 echo "=== Starting Omarchy Configuration Backup ==="
 echo "Creating backup folder: $BACKUP_PATH"
@@ -136,10 +136,11 @@ pacman -Qem > "$BACKUP_PATH/installed_aur_packages.txt"
 echo "  - Saved package lists to installed_packages.txt and installed_aur_packages.txt"
 
 # --- 5. Compression ---
-echo "--> Packaging the backup into a tarball..."
-tar -czf "$TARBALL" -C "$HOME" "$BACKUP_DIR_NAME"
-# Change ownership of tarball to user just in case sudo was triggered
-sudo chown "$(id -u):$(id -g)" "$TARBALL"
+echo "--> Packaging the backup into a zip archive..."
+rm -f "$ZIP_FILE"
+cd "$HOME"
+zip -r "$ZIP_FILE" "$BACKUP_DIR_NAME"
+sudo chown "$(id -u):$(id -g)" "$ZIP_FILE"
 
 # Clean up uncompressed folder
 rm -rf "$BACKUP_PATH"
@@ -147,8 +148,8 @@ rm -rf "$BACKUP_PATH"
 echo "================================================="
 echo "SUCCESS!"
 echo "Your Omarchy settings and system files are backed up at:"
-echo "  $TARBALL"
+echo "  $ZIP_FILE"
 echo "================================================="
-echo "IMPORTANT: Transfer this file ($TARBALL) to an external USB drive"
-echo "or cloud storage before formatting your laptop!"
+echo "This file has been placed inside your local dotfiles repository."
+echo "Once committed and pushed, you can retrieve it by cloning the repo."
 echo "================================================="
