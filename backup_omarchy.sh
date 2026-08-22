@@ -40,6 +40,8 @@ CONFIG_DIRS=(
     "lazygit"
     "git"
     "opencode"
+    "yazi"
+    "1password"
 )
 
 for dir in "${CONFIG_DIRS[@]}"; do

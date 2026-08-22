@@ -26,7 +26,7 @@ yay -S --needed --noconfirm \
 # --- 4. Install GUI Apps & Environment ---
 yay -S --needed --noconfirm \
     kitty waybar hyprland rofi wofi \
-    obsidian 1password-beta 1password-cli localsend vlc \
+    obsidian 1password 1password-beta 1password-cli localsend vlc \
     alacritty brave-bin chromium code helium-browser-bin \
     imv keyd mission-center mpv nautilus obs-studio \
     opencode remmina satty signal-desktop spotify swaybg \
