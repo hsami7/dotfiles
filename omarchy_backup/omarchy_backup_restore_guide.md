@@ -2,8 +2,8 @@
 
 This guide details how to safeguard and restore all your custom settings, configurations, and system-wide modifications before formatting your laptop. 
 
-We have automated the packaging of your configurations into a single compressed archive:
-* **Backup Path:** `/home/ngl/omarchy_backup_2026-08-22.tar.gz` (Size: ~16MB)
+We have automated the packaging of your configurations into a single zip archive:
+* **Backup Path:** `~/dotfiles/omarchy_backup/omarchy_backup.zip` (Size: ~16MB)
 
 ---
 
@@ -53,13 +53,10 @@ Custom adjustments made to hardware and network behavior:
 Before formatting your drive, copy these key files/folders to an external USB drive or cloud storage:
 
 > [!IMPORTANT]
-> **1. Move the Backup Tarball:**
-> Transfer `/home/ngl/omarchy_backup_2026-08-22.tar.gz` to your external storage.
->
-> **2. Back up Your Dotfiles Repository:**
-> Copy the entire `/home/ngl/dotfiles` folder. It contains your keybindings guide, install script, tmux configs, and the backup script itself.
+> **1. Push Your Dotfiles Repository:**
+> Ensure all changes in `/home/ngl/dotfiles` are committed and pushed to your remote repository on GitHub. This includes the new `omarchy_backup/` folder with `omarchy_backup.zip`, the installer fixes, and this guide.
 > 
-> **3. Sync Your Obsidian Vault:**
+> **2. Sync Your Obsidian Vault:**
 > Ensure your Obsidian vault `/home/ngl/Documents/obsidian git sync/` is fully committed and pushed to your remote repository. This contains your full customization history under `900 System/omarchymyway/`.
 >
 > **4. Personal Data Folders:**
@@ -74,10 +71,14 @@ Before formatting your drive, copy these key files/folders to an external USB dr
 
 Once you have installed a fresh instance of Omarchy Linux, follow these steps to restore your environment.
 
-### Step 1: Extract the Configuration Archive
-Transfer the backup tarball to your new home directory and unpack it:
+### Step 1: Clone Dotfiles and Unpack Backup
+First, clone your dotfiles repository to your new home directory, then extract the backup zip archive:
 ```bash
-tar -xzvf ~/omarchy_backup_2026-08-22.tar.gz -C ~/
+# Clone the dotfiles repository
+git clone git@github.com:hsami7/dotfiles.git ~/dotfiles
+
+# Extract the configuration backup (replace date with your backup date if different)
+unzip ~/dotfiles/omarchy_backup/omarchy_backup.zip -d ~/
 ```
 This extracts the files into `~/omarchy_backup_2026-08-22/`.
 
