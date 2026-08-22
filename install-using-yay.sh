@@ -43,6 +43,18 @@ yay -S --needed --noconfirm \
 mkdir -p ~/.local/share
 mkdir -p ~/.tmux/plugins
 
+# Bootstrap Oh My Zsh if missing
+if [ ! -d ~/.oh-my-zsh ]; then
+    echo "Oh My Zsh not found. Installing..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+# Powerlevel10k theme for Oh My Zsh (matches sourcing in .zshrc)
+if [ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]; then
+    echo "Cloning Powerlevel10k theme..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+fi
+
 # TPM (Tmux Plugin Manager)
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
